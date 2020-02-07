@@ -1,0 +1,8 @@
+CREATE TRIGGER `deletionTrigger` BEFORE DELETE ON `kcenter`
+ FOR EACH ROW INSERT INTO `kcenter_logs` VALUES(null,OLD.kcid,'kcenter deleted',NOW())
+
+CREATE TRIGGER `updateTrigger` AFTER UPDATE ON `kcenter`
+ FOR EACH ROW INSERT INTO `kcenter_logs` VALUES(null,NEW.kcid,'kcenter details updated',NOW())
+
+CREATE TRIGGER `insertionTrigger` AFTER INSERT ON `kcenter`
+ FOR EACH ROW INSERT INTO `kcenter_logs` VALUES(null,NEW.kcid,'new kcenter added',NOW())
